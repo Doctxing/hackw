@@ -25,7 +25,9 @@ int main(int argc,char *argv[]){
                 temp = tran(i);
                 if(temp<16384&&temp>0){state = 1;price = temp;}
                 else {state=3;break;}
-            } else {state=2;break;}
+            }else if (strcmp(argv[i],"FULL")==0){
+                price = 16383;state = 1;
+            }else {state=2;break;}
         }else if (temp == 1 && state==0){
         }else if (temp == 2 && state==1){
             i++;
@@ -71,7 +73,7 @@ int main(int argc,char *argv[]){
     else if(state==2) {
         printf("\033[31mError: representation error.\033[0m\n");
         printHelp();
-    }else if(state==3) printf("\033[31mError: it's required that 0 < PRICE < 163.84\033[0m\n");
+    }else if(state==3) printf("\033[31mError: it's required that 0 < PRICE < 163.84\033[0m, you can try \"FULL\"\n");
     else printf("\033[31mError: program fault.\033[0m\n");
     return 1;
 }

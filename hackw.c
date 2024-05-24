@@ -90,38 +90,38 @@ AREA calculate0(const unsigned char *UID,const int cardType){
     return temp;
 }
 AREA calculate8(const unsigned char *UID,int num,int ifHalf,unsigned char times) {
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
+    unsigned char c /*sorry this line can't be made public*/;
+    unsigned char b /*sorry this line can't be made public*/;
+    unsigned char a /*sorry this line can't be made public*/;
+    unsigned char d /*sorry this line can't be made public*/;
+    unsigned char e /*sorry this line can't be made public*/;
+    unsigned char A /*sorry this line can't be made public*/;
+    unsigned char B /*sorry this line can't be made public*/;
+    unsigned char C /*sorry this line can't be made public*/;
+    unsigned char D /*sorry this line can't be made public*/;
+    unsigned char E /*sorry this line can't be made public*/;
+    unsigned char F /*sorry this line can't be made public*/;
     unsigned char keys[6]={A,B,C,D,E,F};
     BLOCK water_data={0},check={0},key={0};
     AREA ret_area;
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
+    check.data[0]/*sorry this line can't be made public*/;
+    check.data[1]/*sorry this line can't be made public*/;
+    check.data[2]/*sorry this line can't be made public*/;
+    check.data[3]/*sorry this line can't be made public*/;
     check.data[15]=e;
     water_data.data[0]=a;
     water_data.data[1]=b;
     water_data.data[5]=c;
-    //sorry this line can't be made public
+    water_data.data[12]=times;
     water_data.data[15]=d;
     key.data[6]=0xff;
     key.data[7]=0x07;
     key.data[8]=0x80;
     key.data[9]=0x69;
+    for (int i = 0; i < 6; ++i) {key.data[i] = keys[i];key.data[i+10] = keys[i];}
     //sorry this line can't be made public
-    memcpy(&(ret_area.blocks[0]), &check, sizeof(BLOCK));
     //sorry this line can't be made public
     //sorry this line can't be made public
-    memcpy(&(ret_area.blocks[3]), &key, sizeof(BLOCK));
+    //sorry this line can't be made public
     return ret_area;
 };
