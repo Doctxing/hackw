@@ -90,24 +90,24 @@ AREA calculate0(const unsigned char *UID,const int cardType){
     return temp;
 }
 AREA calculate8(const unsigned char *UID,int num,int ifHalf,unsigned char times) {
-    unsigned char c /*sorry this line can't be made public*/;
-    unsigned char b /*sorry this line can't be made public*/;
-    unsigned char a /*sorry this line can't be made public*/;
-    unsigned char d /*sorry this line can't be made public*/;
-    unsigned char e /*sorry this line can't be made public*/;
-    unsigned char A /*sorry this line can't be made public*/;
-    unsigned char B /*sorry this line can't be made public*/;
-    unsigned char C /*sorry this line can't be made public*/;
-    unsigned char D /*sorry this line can't be made public*/;
-    unsigned char E /*sorry this line can't be made public*/;
-    unsigned char F /*sorry this line can't be made public*/;
-    unsigned char keys[6]={A,B,C,D,E,F};
+    const unsigned char c = ifHalf*5;
+    const unsigned char b = num/256;
+    const unsigned char a = num%256;
+    const unsigned char d = a+b+c+times;
+    const unsigned char e = UID[0]+UID[1]+UID[2]+0x01;
+    const unsigned char A = UID[0]-0x3d;
+    const unsigned char B = UID[1]-0x0f;
+    const unsigned char C = UID[2]|0x39;
+    const unsigned char D = (UID[3]-0xdb)^0x29;
+    const unsigned char E = (UID[0]+0x11)^0x65;
+    const unsigned char F = (UID[3]+0x30)&0x77;
+    const unsigned char keys[6]={A,B,C,D,E,F};
     BLOCK water_data={0},check={0},key={0};
-    AREA ret_area;
-    check.data[0]/*sorry this line can't be made public*/;
-    check.data[1]/*sorry this line can't be made public*/;
-    check.data[2]/*sorry this line can't be made public*/;
-    check.data[3]/*sorry this line can't be made public*/;
+    const AREA ret_area;
+    check.data[0]=UID[0];
+    check.data[1]=UID[1];
+    check.data[2]=UID[2];
+    check.data[3]=0x01;
     check.data[15]=e;
     water_data.data[0]=a;
     water_data.data[1]=b;
@@ -119,9 +119,9 @@ AREA calculate8(const unsigned char *UID,int num,int ifHalf,unsigned char times)
     key.data[8]=0x80;
     key.data[9]=0x69;
     for (int i = 0; i < 6; ++i) {key.data[i] = keys[i];key.data[i+10] = keys[i];}
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
-    //sorry this line can't be made public
+    memcpy(&(ret_area.blocks[0]), &check, sizeof(BLOCK));
+    memcpy(&(ret_area.blocks[1]), &water_data, sizeof(BLOCK));
+    memcpy(&(ret_area.blocks[2]), &water_data, sizeof(BLOCK));
+    memcpy(&(ret_area.blocks[3]), &key, sizeof(BLOCK));
     return ret_area;
 };
