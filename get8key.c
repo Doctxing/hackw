@@ -26,19 +26,18 @@ int main(int argc,char *argv[]) {
     if (result == -1) {
         printf("Error\n");
         return -1;
-    } else {
-        const unsigned char A = UID[0]-0x3d;
-        const unsigned char B = UID[1]-0x0f;
-        const unsigned char C = UID[2]|0x39;
-        const unsigned char D = (UID[3]-0xdb)^0x29;
-        const unsigned char E = (UID[0]+0x11)^0x65;
-        const unsigned char F = (UID[3]+0x30)&0x77;
-        const unsigned char keys[6]={A,B,C,D,E,F};
-        printf("keys: ");
-        for (int i = 0; i < 6; ++i) {
-            printf("%02X",keys[i]);
-        }
-        printf("\n");
     }
+    const unsigned char A = UID[0]-0x3d;
+    const unsigned char B = UID[1]-0x0f;
+    const unsigned char C = UID[2]|0x39;
+    const unsigned char D = (UID[3]-0xdb)^0x29;
+    const unsigned char E = (UID[0]+0x11)^0x65;
+    const unsigned char F = (UID[3]+0x30)&0x77;
+    const unsigned char keys[6]={A,B,C,D,E,F};
+    printf("keys: ");
+    for (int i = 0; i < 6; ++i) {
+        printf("%02X",keys[i]);
+    }
+    printf("\n");
     return 0;
 }
